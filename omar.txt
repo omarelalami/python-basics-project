@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 omar el alami
 
 omar el alamiv1
+=======
+>>>>>>> parent of b9c452e ( good view)
 =======
 >>>>>>> parent of b9c452e ( good view)
