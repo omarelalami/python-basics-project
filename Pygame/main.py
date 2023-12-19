@@ -27,7 +27,7 @@ def yellow_handle_movement(keys_pressed,yellow):
        
     if keys_pressed[pygame.K_LEFT] and yellow.x - 5 > 0:
         yellow.x-=5
-    if keys_pressed[pygame.K_RIGHT] and yellow.x - 5 < WIDTH - 100:
+    if keys_pressed[pygame.K_RIGHT] and yellow.x + 5 + yellow.width < BORDER.x:
         yellow.x+=5
     if keys_pressed[pygame.K_UP] and yellow.y - 5 > 0:
         yellow.y-=5
