@@ -9,6 +9,9 @@ BORDER=pygame.Rect(WIDTH/2 - 5,0,10,HEIGHT)
 SPACESHIP_WIDTH,SPACESHIP_HEIGHT=100,70
 FPS=90
 BULLET_VEL = 7
+MAX_BULLETS = 3 
+YELLOW_HIT = pygame.USEREVENT + 1
+RED_HIT = pygame.USEREVENT + 1
 YELLOW_SPACESHIP_IMAGE=pygame.image.load('moro.png')
 RED_SPACESHIP_IMAGE=pygame.image.load('moroo.png')
 YELLOW_SPACESHIP=pygame.transform.scale(YELLOW_SPACESHIP_IMAGE,(SPACESHIP_WIDTH,SPACESHIP_HEIGHT))
@@ -45,7 +48,18 @@ def red_handle_movement(keys_pressed,red):
     if keys_pressed[pygame.K_d] and red.y - 5 < HEIGHT - 70 :
         red.y+=5
 
-    
+def handle_bullets(yellow_bullets,red_bullets,yellow,red):
+    for bullet in yellow_bullets:
+        bullet.x += BULLET_VEL
+        if yellow.colliderect(bullet):
+            pygame.event.post(pygame.event.Event(RED_HIT))
+            yellow_bullets.remove(bullet)
+
+    for bullet in red_bullets:
+        bullet.x += BULLET_VEL
+        if red.colliderect(bullet):
+            pygame.event.post(pygame.event.Event(RED_HIT))
+            red_bullets.remove(bullet)      
 
 
 
@@ -53,8 +67,8 @@ def main():
     red=pygame.Rect(100,300,SPACESHIP_WIDTH,SPACESHIP_HEIGHT)
     yellow=pygame.Rect(700,300,SPACESHIP_WIDTH,SPACESHIP_HEIGHT)
     
-   red_bullets=[]
-   yellow_bullets=[]
+    red_bullets=[]
+    yellow_bullets=[]
 
 
     clock=pygame.time.Clock()
@@ -66,11 +80,11 @@ def main():
             if event.type==pygame.QUIT:
                 run=False
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LCTRL:
+                if event.key == pygame.K_LCTRL and len(yellow_bullets) < MAX_BULLETS:
                     bullet=pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height / 2 - 2, 10, 5)
                     yellow_bullets.append(bullet)
-                if event.key == pygame.K_RCTRL:
-                    bullet=pygame.Rect(red.x + red.width, yellow.y + red.height / 2 - 2, 10, 5)
+                if event.key == pygame.K_RCTRL and len(red_bullets) < MAX_BULLETS:
+                    bullet=pygame.Rect(red.x + red.width, red.y + red.height / 2 - 2, 10, 5)
                     red_bullets.append(bullet)
 
 
