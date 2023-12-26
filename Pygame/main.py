@@ -13,7 +13,7 @@ FPS=90
 BULLET_VEL = 5
 MAX_BULLETS = 200
 YELLOW_HIT = pygame.USEREVENT + 1
-RED_HIT = pygame.USEREVENT + 2
+RED_HIT = pygame.USEREVENT + 1
 YELLOW_SPACESHIP_IMAGE=pygame.image.load('moro.png')
 RED_SPACESHIP_IMAGE=pygame.image.load('moroo.png')
 YELLOW_SPACESHIP=pygame.transform.scale(YELLOW_SPACESHIP_IMAGE,(SPACESHIP_WIDTH,SPACESHIP_HEIGHT))
@@ -65,7 +65,7 @@ def handle_bullets(red_bullets,yellow_bullets,red,yellow):
         bullet.x = bullet.x - BULLET_VEL
 
         if red.colliderect(bullet):
-            pygame.event.post(pygame.event.Event(YELLOW_HIT))
+            # pygame.event.post(pygame.event.Event(YELLOW_HIT))
             yellow_bullets.remove(bullet)
         # elif bullet.x > WIDTH:
         #     yellow_bullets.remove(bullet)
@@ -73,7 +73,7 @@ def handle_bullets(red_bullets,yellow_bullets,red,yellow):
     for bullet in red_bullets:
         bullet.x += BULLET_VEL
         if yellow.colliderect(bullet):
-            pygame.event.post(pygame.event.Event(RED_HIT))
+            # pygame.event.post(pygame.event.Event(RED_HIT))
             red_bullets.remove(bullet)
         # elif bullet.x < 0:
         #     red_bullets.remove(bullet)      
