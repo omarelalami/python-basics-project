@@ -61,16 +61,22 @@ def red_handle_movement(keys_pressed,red):
 
 def handle_bullets(red_bullets,yellow_bullets,red,yellow):
     for bullet in yellow_bullets:
-        bullet.x += BULLET_VEL
-        if yellow.colliderect(bullet):
+
+        bullet.x = bullet.x - BULLET_VEL
+
+        if red.colliderect(bullet):
             pygame.event.post(pygame.event.Event(YELLOW_HIT))
             yellow_bullets.remove(bullet)
+        # elif bullet.x > WIDTH:
+        #     yellow_bullets.remove(bullet)
 
     for bullet in red_bullets:
         bullet.x += BULLET_VEL
-        if red.colliderect(bullet):
+        if yellow.colliderect(bullet):
             pygame.event.post(pygame.event.Event(RED_HIT))
-            red_bullets.remove(bullet)      
+            red_bullets.remove(bullet)
+        # elif bullet.x < 0:
+        #     red_bullets.remove(bullet)      
 
 
 
@@ -91,11 +97,14 @@ def main():
             if event.type==pygame.QUIT:
                 run=False
             if event.type == pygame.KEYDOWN:
+
                 if event.key == pygame.K_LCTRL and len(yellow_bullets) < MAX_BULLETS:
-                    bullet=pygame.Rect(yellow.x + yellow.width ,yellow.y + yellow.height // 2 - 2, 10, 5)
+                    bullet=pygame.Rect(yellow.x + yellow.width , yellow.y + yellow.height // 2 - 2, 10, 5)
                     yellow_bullets.append(bullet)
+
+
                 if event.key == pygame.K_RCTRL and len(red_bullets) < MAX_BULLETS:
-                    bullet=pygame.Rect(red.x + red.width , red.y + red.height // 2 - 2, 10, 5)
+                    bullet=pygame.Rect(red.x + red.width, red.y + red.height // 2 - 2, 10, 5)
                     red_bullets.append(bullet)
 
 
