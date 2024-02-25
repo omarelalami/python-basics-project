@@ -1,4 +1,4 @@
-class infrastructures:
+class Infrastructures:
 
     def __init__(self,id_infra,infra_type,length,nb_houses):
         self.id_infra = id_infra

@@ -1,6 +1,6 @@
 
 
-class batiment:
+class Batiment:
     def __init__(self, id_batiment,list_infra) :
          
          self.id_batiment = id_batiment
