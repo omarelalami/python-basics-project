@@ -9,7 +9,7 @@ class batiment:
         
     def difficulty_maison(self):
          
-         return sum(self.difficulty_infra())
+         return sum(self.list_infra)
       
 
 
