@@ -1,6 +1,8 @@
 import pandas as pd
-from infrastructures import Infrastructures
 from batiment import Batiment
+from infrastructures import Infrastructures
+
+# Ajoutez la classe Infrastructures ici avec la méthode repair
 
 def process_infra_dataframe(df):
     df_infra = df[['infra_id', 'infra_type', 'longueur', 'nb_maisons', 'id_batiment']]
@@ -18,7 +20,7 @@ def process_infra_dataframe(df):
             if infra.search_infra(bat_row['infra_id']):
                 dict_difficulty.setdefault(bat_row['id_batiment'], []).append(infra.difficulty_infra())
 
-    return dict_difficulty
+    return dict_difficulty, infrastructures_list
 
 def process_batiment_dataframe(dict_difficulty):
     batiment_objects = [Batiment(bat_id, dict_difficulty[bat_id]) for bat_id in dict_difficulty]
@@ -39,13 +41,19 @@ def main():
     final_list = []
 
     while not infra_to_replace.empty:
-        dict_difficulty = process_infra_dataframe(infra_to_replace)
+        dict_difficulty, infrastructures_list = process_infra_dataframe(infra_to_replace)
         data_batiment = process_batiment_dataframe(dict_difficulty)
-
+        
         building_to_remove = data_batiment.iloc[0, 0]
         final_list.append(building_to_remove)
 
         infra_to_replace = infra_to_replace.loc[~(infra_to_replace['id_batiment'] == building_to_remove)]
+
+        # Appeler la méthode repair pour chaque objet Infrastructures associé au bâtiment ajouté
+        for infra_id in df.loc[df['id_batiment'] == building_to_remove]['infra_id'].unique():
+            infra_object = next((infra for infra in infrastructures_list if infra.search_infra(infra_id)), None)
+            if infra_object:
+                infra_object.repair(building_to_remove)
 
     print(final_list)
 

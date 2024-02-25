@@ -10,9 +10,6 @@ class Infrastructures:
 
         return self.length / self.nb_houses
 
-    
-    def list_infra(self):
-        pass
 
     def search_infra(self,id_infra):
         if self.id_infra == id_infra:
@@ -23,5 +20,5 @@ class Infrastructures:
             return False
     
 
-    def infra_repair(self):
-        pass
+    def repair(self,id_batiment):
+        print('replaced', self.id_infra, 'for',id_batiment)
