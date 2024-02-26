@@ -1,6 +1,6 @@
 # Projet de Minimisation des Coûts de Raccordement des Bâtiments
 
-Ce projet a été réalisé par #Omar El Alami et Antoine Kellini.
+Ce projet a été réalisé par **Omar El Alami** et **Antoine Kellini**.
 
 ## Description
 
