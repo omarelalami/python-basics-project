@@ -76,7 +76,8 @@ def handle_bullets(red_bullets,yellow_bullets,red,yellow):
             # pygame.event.post(pygame.event.Event(RED_HIT))
             red_bullets.remove(bullet)
         # elif bullet.x < 0:
-        #     red_bullets.remove(bullet)      
+        #     red_bullets.remove(bullet)
+              
 
 
 
