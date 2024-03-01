@@ -21,6 +21,6 @@ Les contributions à ce projet sont les bienvenues. Si vous souhaitez contribuer
 ## Auteurs
 
 - Omar El Alami
-- Antoine Kellini
+- Antoine Kelleni
 
 ---
